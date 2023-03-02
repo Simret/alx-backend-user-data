@@ -49,6 +49,7 @@ def get_logger() -> logging.Logger:
     logger.addHandler(handler)
     return logger
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     '''Implementing db conection'''
     psd = os.environ.get("PERSONAL_DATA_DB_PASSWORD", "")
