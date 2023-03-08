@@ -11,13 +11,20 @@ class Auth:
         '''Determining whether a given path requires authentication or not'''
         if path is None:
             return True
-        if excluded_paths is None:
+        elif excluded_paths is None or excluded_paths == []:
             return True
-        path = path + '/' if path[-1] != '/' else path
-        if path not in excluded_paths:
-            return True
-        else:
+        elif path in excluded_paths:
             return False
+        else:
+            for i in excluded_paths:
+                if i.startswith(path):
+                    return False
+                if path.startswith(i):
+                    return False
+                if i[-1] == "*":
+                    if path.startswith(i[:-1]):
+                        return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         '''Returning the authorization header from a request object'''
