@@ -24,6 +24,7 @@ elif AUTH_TYPE == "session_auth":
     from api.v1.auth.session_auth import SessionAuth
     auth = SessionAuth()
 
+
 @app.before_request
 def bef_req():
     """Filtering request before it's handled by the proper route"""
