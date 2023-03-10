@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """User session"""
 from models.base import Base
+from typing import TypeVar, List, Iterable
+from os import path
+import json
+import uuid
 
 
 class UserSession(Base):
