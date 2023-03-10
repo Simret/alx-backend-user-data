@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""Session authentication with expiration
-and storage support module for the API.
-"""
+"""Session authentication with expiration and storage support"""
 from flask import request
 from datetime import datetime, timedelta
 
@@ -12,17 +10,14 @@ from .session_exp_auth import SessionExpAuth
 class SessionDBAuth(SessionExpAuth):
     """Session authentication with expiration and storage"""
 
-    def create_session(self, user_id=None) -> str:
+    def create_session(self, user_id=None):
         """Creating and storing a session id"""
         session_id = super().create_session(user_id)
-        if isinstance(session_id, str):
-            kwargs = {
-                'user_id': user_id,
-                'session_id': session_id,
-            }
-            user_session = UserSession(**kwargs)
-            user_session.save()
-            return session_id
+        if user_id is None:
+            return None
+        user_session = UserSession(user_id=user_id, session_id=session_id)
+        user_session.save()
+        return session_id
 
     def user_id_for_session_id(self, session_id=None):
         """Retrieving the user id"""
