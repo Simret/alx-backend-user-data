@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """Auth Class for user attributes validation
 """
