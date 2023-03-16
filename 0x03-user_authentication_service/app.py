@@ -2,7 +2,7 @@
 """ Flask App class
 """
 from auth import Auth
-from flask import Flask, jsonify, request, abort, redirect
+from flask import Flask, jsonify, request, redirect
 
 AUTH = Auth()
 app = Flask(__name__)
@@ -30,7 +30,4 @@ def user() -> str:
         return jsonify({"email": f"{email}", "message": "user created"}), 200
     except Exception:
         return jsonify({"message": "email already registered"}), 400
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    
