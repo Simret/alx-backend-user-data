@@ -18,14 +18,14 @@ def _hash_password(password: str) -> str:
 
 
 class Auth:
-    """Auth class to interact with the authentication database.
-    """
+    """Auth class to interact with the authentication database"""
 
     def __init__(self):
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
         """Takes email and password arguments
+        and returns user
         Raise ValueError if exists
         """
         try:
